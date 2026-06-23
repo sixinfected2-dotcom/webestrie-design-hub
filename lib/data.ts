@@ -19,6 +19,7 @@ export const hubData: HubData = {
       years: '30+ ans',
       palette: 'sage-editorial',
       tech: ['Next.js 16', 'Tailwind v4', 'Vercel', 'ScrollReveal'],
+      portalPassword: 'arbro2026',
       phases: [
         { id: 'E', label: 'Phase E', status: 'done', desc: 'Dark mode off, base stable' },
         { id: 'F0', label: 'F.0 Accueil', status: 'done', desc: 'M29.1-3 live' },

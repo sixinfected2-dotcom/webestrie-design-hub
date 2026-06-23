@@ -37,7 +37,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   };
 
   const isClientActive = (slug: string) => {
-    return pathname.startsWith(`/clients/${slug}`) || pathname.startsWith(`/tokens/${slug}`) || pathname.startsWith(`/audit/${slug}`);
+    return pathname.startsWith(`/clients/${slug}`) || pathname.startsWith(`/tokens/${slug}`) || pathname.startsWith(`/audit/${slug}`) || pathname.startsWith(`/performance/${slug}`) || pathname.startsWith(`/portal/${slug}`);
   };
 
   const themeEntries = Object.entries(hubData.themes) as [ThemeKey, (typeof hubData.themes)[ThemeKey]][];
@@ -116,6 +116,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                     </Link>
                     <Link href={`/audit/${c.slug}`} className="flex items-center gap-2 rounded-md px-3 py-1.5 text-xs text-[var(--ink)] hover:bg-[rgba(201,122,16,0.06)]">
                       <ChevronRight className="h-3 w-3" /> Audit
+                    </Link>
+                    <Link href={`/performance/${c.slug}`} className="flex items-center gap-2 rounded-md px-3 py-1.5 text-xs text-[var(--ink)] hover:bg-[rgba(201,122,16,0.06)]">
+                      <ChevronRight className="h-3 w-3" /> Performance
+                    </Link>
+                    <Link href={`/portal/${c.slug}`} className="flex items-center gap-2 rounded-md px-3 py-1.5 text-xs text-[var(--ink)] hover:bg-[rgba(201,122,16,0.06)]">
+                      <ChevronRight className="h-3 w-3" /> Portail
                     </Link>
                   </div>
                 )}

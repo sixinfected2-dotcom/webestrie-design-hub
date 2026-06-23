@@ -78,6 +78,25 @@ export interface Client {
   phases: Phase[];
   missions: Mission[];
   pages: ClientPage[];
+  portalPassword?: string;
+}
+
+export interface PerformanceEntry {
+  id: string;
+  date: string;
+  lcp: number;
+  cls: number;
+  lighthouse: number;
+  inp: number;
+  missionId?: string;
+  notes?: string;
+}
+
+export interface PerformanceBudget {
+  lcp: number;
+  cls: number;
+  lighthouse: number;
+  inp: number;
 }
 
 export interface Tool {
