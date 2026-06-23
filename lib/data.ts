@@ -1,7 +1,7 @@
-import type { HubData } from './types';
+import type { HubData, HubState } from './types';
 
 export const hubData: HubData = {
-  version: '4.0.0',
+  version: '4.1.0',
   lastUpdated: '2026-06-23',
   agency: {
     name: 'WebEstrie',
@@ -255,6 +255,159 @@ export const hubData: HubData = {
       border: '#EDD5C0',
     },
   },
+  templates: [
+    {
+      id: 'tpl-1',
+      name: 'Hero Photo Full + Overlay',
+      category: 'hero',
+      description: 'Hero pleine largeur avec photo 4K et overlay sage-editorial. Concept validé, paragraphe hero rédigé.',
+      basedOn: 'M29.1',
+      keyDecisions: [
+        'Photo 4K plein écran plutôt que split',
+        'Overlay sage-editorial pour lisibilité',
+        'Texte hero centré sur l\'overlay',
+      ],
+      steps: [
+        'Sélectionner photo 4K landscape',
+        'Appliquer overlay linear-gradient sage-editorial',
+        'Rédiger copy hero (titre + sous-titre)',
+        'Tester en mobile (overlay opacité adaptée)',
+      ],
+    },
+    {
+      id: 'tpl-2',
+      name: 'Bento Stats Harmonisé',
+      category: 'stats',
+      description: 'Bento grid avec statistiques harmonisé vers la palette cream + forest + terracotta au lieu de forest + amber.',
+      basedOn: 'M29.2',
+      keyDecisions: [
+        'Passage de forest+amber à cream+forest+terracotta',
+        'Case "30+ années" remaniée visuellement',
+        'Harmonisation avec sections adjacentes',
+      ],
+      steps: [
+        'Identifier les cases bento à harmoniser',
+        'Remplacer les couleurs forest+amber par cream+forest',
+        'Vérifier le contraste WCAG',
+        'Tester la cohérence avec sections voisines',
+      ],
+    },
+    {
+      id: 'tpl-3',
+      name: 'Cream Section Harmonization',
+      category: 'harmonization',
+      description: 'Remplacement de bg-white par bg-cream (#F5EFE4) pour harmoniser visuellement les sections adjacentes.',
+      basedOn: 'M29.3',
+      keyDecisions: [
+        'bg-white → bg-[#F5EFE4] systématique',
+        'Harmonisation du rythme visuel entre sections',
+      ],
+      steps: [
+        'Identifier les sections bg-white à harmoniser',
+        'Remplacer par bg-cream',
+        'Vérifier la transition visuelle entre sections',
+        'Valider en mobile et desktop',
+      ],
+    },
+    {
+      id: 'tpl-4',
+      name: 'Bento Asymétrique + Animations',
+      category: 'gallery',
+      description: 'Bento grid asymétrique trié par technique avec 8 animations CSS déclenchées au scroll via IntersectionObserver.',
+      basedOn: 'M31',
+      keyDecisions: [
+        'Bento asymétrique plutôt que grid uniforme',
+        'Tri par technique arboricole',
+        '8 animations CSS (fade, slide, scale, rotate...)',
+        'ScrollReveal.tsx — composant IntersectionObserver réutilisable',
+        'Version finale: C2-pro-anime-final',
+      ],
+      steps: [
+        'Créer la structure bento asymétrique',
+        'Implémenter ScrollReveal.tsx (IntersectionObserver)',
+        'Ajouter 8 keyframes CSS (fade-up, slide-right, scale-in...)',
+        'Assigner animations aux éléments au scroll',
+        'Tester performance (respect prefers-reduced-motion)',
+      ],
+    },
+    {
+      id: 'tpl-5',
+      name: 'Sketch Exploration Process',
+      category: 'form',
+      description: 'Processus d\'exploration de 5 sketches pour une page. Chaque sketch est exploré, puis un seul est sélectionné et implémenté.',
+      basedOn: 'M34',
+      keyDecisions: [
+        '5 sketches minimum par mission critique',
+        'Sélection basée sur professionnalisme et clarté',
+        'Fusion possible avec pages existantes',
+        'Chaque sketch documenté (id, nom, description, statut)',
+      ],
+      steps: [
+        'Définir les objectifs de la page',
+        'Produire 5 sketches distincts (A, B, C, D, E)',
+        'Évaluer chaque sketch (explored → selected/rejected)',
+        'Implémenter le sketch sélectionné',
+        'Documenter les commits et l\'URL live',
+      ],
+    },
+    {
+      id: 'tpl-6',
+      name: 'CTA Color Refinement',
+      category: 'CTA',
+      description: 'Raffinement couleur CTA : passage de forest à cream suite à directive utilisateur "le vert j\'aime pas".',
+      basedOn: 'M30.3',
+      keyDecisions: [
+        'Écoute de la préférence utilisateur (anti-vert)',
+        'Forest → cream #F5EFE4 pour CTA',
+        'Maintien du contraste et de la lisibilité',
+      ],
+      steps: [
+        'Identifier le CTA à raffiner',
+        'Tester alternative cream',
+        'Valider avec l\'utilisateur',
+        'Implémenter et déployer',
+      ],
+    },
+    {
+      id: 'tpl-7',
+      name: 'Phase Timeline Component',
+      category: 'component',
+      description: 'Timeline horizontale de phases avec nuds colorés par statut (done=in-progress=pending) et ligne de progression.',
+      basedOn: 'M28',
+      keyDecisions: [
+        'Timeline horizontale responsive',
+        'Nuds circulaires colorés par statut',
+        'Ligne de progression entre nuds',
+        'Icônes lucide-react (Check, Circle, Clock)',
+      ],
+      steps: [
+        'Définir les phases et leurs statuts',
+        'Créer la structure flex horizontale',
+        'Styler les nuds selon le statut',
+        'Ajouter les connecteurs entre nuds',
+        'Rendre responsive (overflow-x-auto sur mobile)',
+      ],
+    },
+    {
+      id: 'tpl-8',
+      name: 'Multi-Sub-Mission Pattern',
+      category: 'structure',
+      description: 'Pattern de mission avec sous-missions multiples, chacune avec son propre statut, commit et description.',
+      basedOn: 'M30/M29',
+      keyDecisions: [
+        'Décomposition en sous-missions granulaires',
+        'Statut individuel par sous-mission',
+        'Commit hash par sous-mission',
+        'Page parent agrégeant les sous-missions',
+      ],
+      steps: [
+        'Identifier les sous-tâches d\'une mission',
+        'Créer un SubMission[] avec id, name, desc, status',
+        'Assigner un commit par sous-mission',
+        'Lier à la page parent dans client.pages',
+      ],
+    },
+  ],
 };
 
 // === Helper functions ===
@@ -287,4 +440,25 @@ export function getRecentMissions(limit = 5) {
     .flatMap((c) => (c.missions || []).map((m) => ({ ...m, clientName: c.name, clientSlug: c.slug })))
     .sort((a, b) => b.num - a.num)
     .slice(0, limit);
+}
+
+export function getMission(clientSlug: string, missionId: string) {
+  const client = getClient(clientSlug);
+  if (!client) return null;
+  const mission = client.missions.find((m) => m.id === missionId);
+  if (!mission) return null;
+  return { client, mission };
+}
+
+export function getTemplates() {
+  return hubData.templates;
+}
+
+export function getDefaultHubState(): HubState {
+  return {
+    lastUpdated: new Date().toISOString(),
+    missionOverrides: {},
+    pageOverrides: {},
+    sessionLogs: [],
+  };
 }

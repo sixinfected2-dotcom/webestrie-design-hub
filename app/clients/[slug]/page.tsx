@@ -187,7 +187,9 @@ function MissionBlock({ mission: m }: { mission: NonNullable<ReturnType<typeof g
     <div id={m.id} className="animate-fade-up scroll-mt-20">
       <div className="mb-4 flex flex-wrap items-center gap-3">
         <span className="font-heading text-3xl text-[var(--amber)]">{m.num}</span>
-        <h3 className="font-heading text-xl text-[var(--ink)]">{m.title}</h3>
+        <Link href={`/clients/ct-arbro/missions/${m.id}`} className="font-heading text-xl text-[var(--ink)] transition-colors hover:text-[var(--amber)]">
+          {m.title}
+        </Link>
         <Badge variant={missionTagVariant[m.status]}>{m.tag}</Badge>
         {m.meta && <span className="ml-auto text-sm text-[var(--terracotta)]">{m.meta}</span>}
       </div>

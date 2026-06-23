@@ -87,6 +87,38 @@ export interface Tool {
   icon: string;
 }
 
+export type TemplateCategory =
+  | 'hero'
+  | 'gallery'
+  | 'form'
+  | 'CTA'
+  | 'harmonization'
+  | 'stats'
+  | 'component'
+  | 'structure';
+
+export interface MissionTemplate {
+  id: string;
+  name: string;
+  category: TemplateCategory;
+  description: string;
+  basedOn: string;
+  keyDecisions: string[];
+  steps: string[];
+}
+
+export interface SessionLogEntry {
+  date: string;
+  description: string;
+}
+
+export interface HubState {
+  lastUpdated: string;
+  missionOverrides: Record<string, { status: string }>;
+  pageOverrides: Record<string, { status: string }>;
+  sessionLogs: SessionLogEntry[];
+}
+
 export interface HubData {
   version: string;
   lastUpdated: string;
@@ -98,4 +130,5 @@ export interface HubData {
   clients: Client[];
   tools: Tool[];
   themes: Record<ThemeKey, Theme>;
+  templates: MissionTemplate[];
 }

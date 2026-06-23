@@ -1,15 +1,18 @@
 import Link from 'next/link';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight, ExternalLink, Clock, GitCommit } from 'lucide-react';
 import { hubData, getStats, getRecentMissions } from '@/lib/data';
+import { readHubState } from '@/lib/hub-state';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { ClientLogo } from '@/components/client-logo';
+import { UpdatePanel } from '@/components/update-panel';
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
   const stats = getStats();
   const recentMissions = getRecentMissions(6);
   const clients = hubData.clients;
+  const hubState = await readHubState();
 
   const statCards = [
     { label: 'Clients', value: stats.clients, icon: '🏢' },
@@ -19,10 +22,27 @@ export default function DashboardPage() {
     { label: 'En cours', value: stats.inProgress, icon: '●' },
   ];
 
+  const formatTimestamp = (ts: string) => {
+    try {
+      return new Date(ts).toLocaleString('fr-CA', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+    } catch {
+      return ts;
+    }
+  };
+
   return (
     <div className="space-y-8">
-      {/* Hero */}
-      <div className="text-center py-6">
+      {/* Hero + Update button */}
+      <div className="relative text-center py-6">
+        <div className="absolute right-0 top-0">
+          <UpdatePanel />
+        </div>
         <span className="inline-block animate-fade-up rounded-full bg-[var(--amber)] px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white">
           WebEstrie Design System
         </span>
@@ -33,6 +53,11 @@ export default function DashboardPage() {
         <p className="mx-auto mt-3 max-w-xl text-sm text-[var(--terracotta)] animate-fade-up" style={{ animationDelay: '0.2s' }}>
           Dashboard SaaS multi-clients. Missions, sketches, pages live et outils — tout au même endroit.
         </p>
+        {/* Last updated */}
+        <div className="mt-3 flex items-center justify-center gap-2 text-xs text-[var(--terracotta)] animate-fade-in" style={{ animationDelay: '0.3s' }}>
+          <Clock className="h-3 w-3" />
+          Dernière mise à jour: {formatTimestamp(hubState.lastUpdated)}
+        </div>
       </div>
 
       {/* Stats bar */}
@@ -52,6 +77,24 @@ export default function DashboardPage() {
           </div>
         ))}
       </div>
+
+      {/* Session logs */}
+      {hubState.sessionLogs.length > 0 && (
+        <div className="animate-fade-up" style={{ animationDelay: '0.35s' }}>
+          <h2 className="mb-3 font-heading text-xl text-[var(--ink)]">Journal des sessions</h2>
+          <div className="space-y-2">
+            {hubState.sessionLogs.slice().reverse().slice(0, 5).map((log, i) => (
+              <div key={i} className="flex items-center gap-3 rounded-lg border border-[var(--border)] bg-[var(--bg-2)] p-3">
+                <GitCommit className="h-4 w-4 shrink-0 text-[var(--terracotta)]" />
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm text-[var(--ink)]">{log.description}</p>
+                  <span className="text-xs text-[var(--terracotta)]">{formatTimestamp(log.date)}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Client cards */}
       <div>
@@ -120,7 +163,7 @@ export default function DashboardPage() {
             {recentMissions.map((m) => {
               const statusVariant = m.status === 'live' ? 'live' : m.status === 'in-progress' ? 'progress' : m.status === 'rejected' ? 'rejected' : 'archive';
               return (
-                <Link key={m.id} href={`/clients/${m.clientSlug}#${m.id}`}>
+                <Link key={m.id} href={`/clients/${m.clientSlug}/missions/${m.id}`}>
                   <Card className="card-hover flex items-center gap-4 p-4">
                     <div className="font-heading text-2xl text-[var(--amber)]">{m.num}</div>
                     <div className="min-w-0 flex-1">

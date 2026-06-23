@@ -12,6 +12,7 @@ import type { ThemeKey } from '@/lib/types';
 const navItems = [
   { href: '/', label: 'Dashboard', icon: '📊' },
   { href: '/components', label: 'Composants', icon: '🧩' },
+  { href: '/templates', label: 'Modèles', icon: '📋' },
   { href: '/tools', label: 'Outils', icon: '⚙' },
 ];
 
@@ -30,6 +31,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
     if (href === '/components') return pathname.startsWith('/components');
+    if (href === '/templates') return pathname.startsWith('/templates');
     if (href === '/tools') return pathname.startsWith('/tools');
     return pathname.startsWith(href);
   };
@@ -105,6 +107,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                   <div className="ml-3 mt-0.5 flex flex-col gap-0.5">
                     <Link href={`/clients/${c.slug}`} className="flex items-center gap-2 rounded-md px-3 py-1.5 text-xs text-[var(--ink)] hover:bg-[rgba(201,122,16,0.06)]">
                       <ChevronRight className="h-3 w-3" /> Détails
+                    </Link>
+                    <Link href={`/clients/${c.slug}/missions/M34`} className="flex items-center gap-2 rounded-md px-3 py-1.5 text-xs text-[var(--ink)] hover:bg-[rgba(201,122,16,0.06)]">
+                      <ChevronRight className="h-3 w-3" /> Time Machine
                     </Link>
                     <Link href={`/tokens/${c.slug}`} className="flex items-center gap-2 rounded-md px-3 py-1.5 text-xs text-[var(--ink)] hover:bg-[rgba(201,122,16,0.06)]">
                       <ChevronRight className="h-3 w-3" /> Tokens
