@@ -1,8 +1,8 @@
 import type { HubData, HubState } from './types';
 
 export const hubData: HubData = {
-  version: '4.2.0',
-  lastUpdated: '2026-06-23',
+  version: '4.3.0',
+  lastUpdated: '2026-06-25',
   agency: {
     name: 'WebEstrie',
     logo: '/assets/logo-webestrie.png',
@@ -30,6 +30,7 @@ export const hubData: HubData = {
         { id: 'F5', label: 'F.5 À propos', status: 'done', desc: 'M35 v10 live, 8 itérations' },
         { id: 'G1', label: 'G.1 Politique', status: 'done', desc: 'M50.1 live — Sketch B v2 Sticky TOC + hero cream' },
         { id: 'G2', label: 'G.2 Garanties', status: 'done', desc: 'M60.1 live — Sketch C v2 Bento + 3 sliders mobile' },
+        { id: 'G3', label: 'G.3 Audit + Polish', status: 'done', desc: 'M70 audit complet + M71 perf/UX polish · 9 commits total' },
       ],
       missions: [
         {
@@ -71,7 +72,7 @@ export const hubData: HubData = {
           phase: 'F5',
           status: 'live',
           tag: 'Live',
-          meta: '8 itérations (v3→v10) · 6 sections · ScrollReveal + sliders mobile',
+          meta: '8 itérations (v3→v10) · 5 sections · ScrollReveal + sliders mobile · sections consolider',
           sketches: [
             { id: 'v3', name: 'Base C1+ premium', desc: '6 sections de base', status: 'explored' },
             { id: 'v4', name: 'Mobile 3 breakpoints', desc: '1100/800/480px', status: 'explored' },
@@ -93,7 +94,7 @@ export const hubData: HubData = {
           phase: 'F4',
           status: 'live',
           tag: 'Live',
-          meta: 'Layout B Form First · 5 sketches · fusion /contact · live',
+          meta: 'Layout B Form First · 5 sketches · fusion /contact · form simplifié 9→5 champs · live',
           sketches: [
             { id: 'A', name: 'Split form 60/40', desc: 'Hero + 5 étapes + form 60% + sidebar forest 40%', status: 'explored' },
             { id: 'B', name: 'Form first', desc: 'Formulaire dès le hero, split 50/50 + sidebar forest. Le plus pro.', status: 'selected', featured: true },
@@ -244,6 +245,30 @@ export const hubData: HubData = {
           tag: 'Gold',
           meta: 'Process + FAQ + CTA. Gold standard M28.',
           commits: ['21bcaf9'],
+        },
+        {
+          id: 'M70',
+          num: 70,
+          title: 'Audit complet + UI/UX fixes',
+          phase: 'G3',
+          status: 'live',
+          tag: 'Live',
+          meta: 'Audit SEO/accessibilité/palette + emojis→Lucide + Server Components + zigzag redesign · 5 commits',
+          commits: ['4beabf3', '6710036', '80c4089', '6849c5a', '140ea6c'],
+          liveUrl: 'https://ctarbro.ca',
+          notes: 'Audit complet multi-skills (SEO, accessibility, design-taste-frontend, ui-ux-designer). 16 problèmes identifiés (3 critiques, 7 modérés, 6 mineurs). Palette drift éliminée (gray→neutral/cream), emojis remplacés par SVG Lucide, 6 composants convertis en Server Components, zigzag homepage corrigé (AI slop bg-forest → editorial image band), fake history neutralisé.',
+        },
+        {
+          id: 'M71',
+          num: 71,
+          title: 'Performance + UX polish',
+          phase: 'G3',
+          status: 'live',
+          tag: 'Live',
+          meta: 'heroicons retiré + 13 use client inutiles retirés + form estimation 9→5 champs + apropos 6→5 sections + eyebrow homepage retiré · 4 commits',
+          commits: ['8ed9582', '799e2ca', 'ecbedf3', '709c513'],
+          liveUrl: 'https://ctarbro.ca',
+          notes: 'Quick wins performance: @heroicons/react (dépendance morte, 0 import) retirée, 13 composants use client inutiles convertis en Server Components. Form estimation simplifié 9→5 champs (Nom complet, Courriel, Téléphone optionnel, Type service, Description). /apropos consolider (engagements+valeurs+certifs fusionnés, 6→5 sections). Homepage eyebrow "Nos expertises" retiré (redondant avec H2).',
         },
         {
           id: 'M21a',
@@ -466,6 +491,125 @@ export const hubData: HubData = {
       ],
     },
   ],
+  activities: [
+    {
+      id: 'act-25-1',
+      date: '2026-06-25',
+      type: 'perf',
+      title: 'Performance: @heroicons retiré + 13 use client inutiles',
+      desc: 'Dépendance morte @heroicons/react retirée (0 import). 13 composants avec use client inutile convertis en Server Components (moins de JS à hydrater).',
+      commit: '8ed9582',
+      files: 2,
+      session: '2026-06-25',
+    },
+    {
+      id: 'act-25-2',
+      date: '2026-06-25',
+      type: 'fix',
+      title: 'Formulaire /estimation simplifié 9→5 champs',
+      desc: 'Prénom+Nom fusionnés. Adresse/Ville/Code postal retirés (demandés au téléphone). Téléphone devient optionnel. Moins de friction = meilleur taux de conversion.',
+      commit: '799e2ca',
+      files: 1,
+      session: '2026-06-25',
+    },
+    {
+      id: 'act-25-3',
+      date: '2026-06-25',
+      type: 'design',
+      title: '/apropos consolider — 6→5 sections',
+      desc: 'Sections Engagements (3 cards) + Valeurs/Certifs (2 cols) fusionnées en 1 section. Divider "Nos engagements" retiré. Page plus compacte, moins répétitive.',
+      commit: 'ecbedf3',
+      files: 1,
+      session: '2026-06-25',
+    },
+    {
+      id: 'act-25-4',
+      date: '2026-06-25',
+      type: 'fix',
+      title: 'Homepage: eyebrow "Nos expertises" retiré',
+      desc: 'Eyebrow redondant avec le H2 "Nos services d\'arboriculture". Retiré pour consistance avec audit précédent.',
+      commit: '709c513',
+      files: 1,
+      session: '2026-06-25',
+    },
+    {
+      id: 'act-24-1',
+      date: '2026-06-24',
+      type: 'audit',
+      title: 'Audit complet ctarbro.ca — SEO, accessibilité, palette, performance',
+      desc: 'Audit multi-skills: 9 pages HTTP 200, sitemap analysé, JSON-LD validé, palette drift détectée (gray dans 4 composants). 16 problèmes UI/UX identifiés.',
+      commit: '4beabf3',
+      files: 7,
+      session: '2026-06-24',
+    },
+    {
+      id: 'act-24-2',
+      date: '2026-06-24',
+      type: 'fix',
+      title: 'Palette drift éliminée + nav semantic + sitemap corrigé',
+      desc: 'gray-* remplacés par neutral/cream dans Footer, EstimationForm, ContactPageForm, ImageGallery. <nav aria-label> ajouté. /contact retiré du sitemap (redirect 307). Title raccourci.',
+      commit: '4beabf3',
+      files: 7,
+      session: '2026-06-24',
+    },
+    {
+      id: 'act-24-3',
+      date: '2026-06-24',
+      type: 'design',
+      title: 'Emojis → SVG Lucide (/apropos + /garanties)',
+      desc: '20 emojis remplacés par icônes SVG Lucide (Sprout, HeartHandshake, BookOpen, Star, Shield, etc.). Nav complétée: 7 items (Ajout À propos + Garanties).',
+      commit: '6710036',
+      files: 4,
+      session: '2026-06-24',
+    },
+    {
+      id: 'act-24-4',
+      date: '2026-06-24',
+      type: 'fix',
+      title: 'Zigzag homepage corrigé (AI slop → editorial image band)',
+      desc: '3e service bg-forest (AI slop) → bandeau image éditorial 16:7 avec caption overlay. Fake history neutralisé. Valeurs fusionnées.',
+      commit: '80c4089',
+      files: 3,
+      session: '2026-06-24',
+    },
+    {
+      id: 'act-24-5',
+      date: '2026-06-24',
+      type: 'perf',
+      title: '6 composants → Server Components + UX polish',
+      desc: 'AvisHeroE7, ContactHero, EstimationHero, TerritoireHero, HeroParallax, ServiceCard: use client retiré. Eyebrows /services réduits (5→2). FAQ eyebrow retiré. /territoire lien d\'ancrage carte.',
+      commit: '140ea6c',
+      files: 16,
+      session: '2026-06-24',
+    },
+    {
+      id: 'act-23-1',
+      date: '2026-06-23',
+      type: 'feature',
+      title: 'Design Hub v4.2 — Client Portal + A/B Comparator + Performance Tracker',
+      desc: '3 nouvelles pages: portal client password-protected, comparator de composants côte à côte, tracker de performance Lighthouse.',
+      commit: 'c5e430f',
+      session: '2026-06-23',
+    },
+    {
+      id: 'act-23-2',
+      date: '2026-06-23',
+      type: 'feature',
+      title: 'Design Hub v4.1 — Time Machine + Templates + Auto-Update',
+      desc: 'Timeline visuelle évolution sketches, 8 templates réutilisables, panel admin auto-update stats.',
+      commit: 'c918694',
+      session: '2026-06-23',
+    },
+    {
+      id: 'act-23-3',
+      date: '2026-06-23',
+      type: 'feature',
+      title: 'Design Hub v4.0 — Next.js 16 + 6 pages',
+      desc: 'Refonte complète: Dashboard, Clients, Tokens, Composants, Audit, Tools. Next.js 16 + TypeScript + Tailwind v4.',
+      commit: 'b93f000',
+      session: '2026-06-23',
+    },
+  ],
 };
 
 // === Helper functions ===
@@ -510,6 +654,11 @@ export function getMission(clientSlug: string, missionId: string) {
 
 export function getTemplates() {
   return hubData.templates;
+}
+
+export function getActivities(limit?: number) {
+  const sorted = [...hubData.activities].sort((a, b) => b.date.localeCompare(a.date));
+  return limit ? sorted.slice(0, limit) : sorted;
 }
 
 export function getDefaultHubState(): HubState {

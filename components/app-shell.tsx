@@ -13,6 +13,7 @@ const navItems = [
   { href: '/', label: 'Dashboard', icon: '📊' },
   { href: '/components', label: 'Composants', icon: '🧩' },
   { href: '/templates', label: 'Modèles', icon: '📋' },
+  { href: '/activity', label: 'Activité', icon: '📡' },
   { href: '/tools', label: 'Outils', icon: '⚙' },
 ];
 
@@ -33,6 +34,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     if (href === '/components') return pathname.startsWith('/components');
     if (href === '/templates') return pathname.startsWith('/templates');
     if (href === '/tools') return pathname.startsWith('/tools');
+    if (href === '/activity') return pathname.startsWith('/activity');
     return pathname.startsWith(href);
   };
 

@@ -131,6 +131,17 @@ export interface SessionLogEntry {
   description: string;
 }
 
+export interface ActivityEntry {
+  id: string;
+  date: string;
+  type: 'commit' | 'fix' | 'feature' | 'audit' | 'deploy' | 'design' | 'perf';
+  title: string;
+  desc: string;
+  commit?: string;
+  files?: number;
+  session?: string;
+}
+
 export interface HubState {
   lastUpdated: string;
   missionOverrides: Record<string, { status: string }>;
@@ -150,4 +161,5 @@ export interface HubData {
   tools: Tool[];
   themes: Record<ThemeKey, Theme>;
   templates: MissionTemplate[];
+  activities: ActivityEntry[];
 }

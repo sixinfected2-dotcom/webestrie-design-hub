@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { ArrowRight, ExternalLink, Clock, GitCommit } from 'lucide-react';
-import { hubData, getStats, getRecentMissions } from '@/lib/data';
+import { ArrowRight, ExternalLink, Clock, GitCommit, Activity } from 'lucide-react';
+import { hubData, getStats, getRecentMissions, getActivities } from '@/lib/data';
 import { readHubState } from '@/lib/hub-state';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -11,6 +11,7 @@ import { UpdatePanel } from '@/components/update-panel';
 export default async function DashboardPage() {
   const stats = getStats();
   const recentMissions = getRecentMissions(6);
+  const recentActivities = getActivities(5);
   const clients = hubData.clients;
   const hubState = await readHubState();
 
@@ -198,6 +199,32 @@ export default async function DashboardPage() {
               </a>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Recent activity feed */}
+      <div>
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="font-heading text-2xl text-[var(--ink)]">Activité récente</h2>
+          <Link href="/activity" className="flex items-center gap-1 text-xs text-[var(--terracotta)] hover:underline">
+            Voir tout <ArrowRight className="h-3 w-3" />
+          </Link>
+        </div>
+        <div className="space-y-2">
+          {recentActivities.map((act) => (
+            <Card key={act.id} className="card-hover flex items-center gap-3 p-3">
+              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--bg)]">
+                <GitCommit className="h-3.5 w-3.5 text-[var(--amber)]" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <h4 className="truncate text-sm font-medium text-[var(--ink)]">{act.title}</h4>
+                <p className="truncate text-xs text-[var(--terracotta)]">
+                  {act.date} · {act.type}
+                  {act.commit && ` · ${act.commit.slice(0, 7)}`}
+                </p>
+              </div>
+            </Card>
+          ))}
         </div>
       </div>
     </div>
