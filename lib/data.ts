@@ -280,6 +280,13 @@ export const hubData: HubData = {
           meta: 'Header chromatique editoriale + nav 7→5 + wordmark Gloock + barre action mobile + route group (site) · 6 commits',
           commits: ['3569832', 'e94ef4e', '8ca22b6', '7ae0a57', '6d1b34f', 'e0f4cc2'],
           liveUrl: 'https://ctarbro.ca',
+          sketches: [
+            { id: 'A', name: 'Minimalist Luxury', desc: 'Header hybride minimaliste, luxe épuré', status: 'explored' },
+            { id: 'B', name: 'Bold Editorial', desc: 'Header éditorial audacieux, typographie forte', status: 'selected', featured: true },
+            { id: 'C', name: 'Natural Earth', desc: 'Header terrestre, palette naturelle', status: 'explored' },
+            { id: 'D', name: 'Dark Premium', desc: 'Header sombre premium', status: 'explored' },
+            { id: 'E', name: 'Dark Studio', desc: 'Header sombre studio, contraste élevé', status: 'explored' },
+          ],
           notes: 'Refonte header: nav réduit de 7 à 5 entrées, wordmark en Gloock (remplace Geist), barre d action mobile, token hairline, correctifs de contraste. Route group (site) pour isoler le chrome C&T du landing webcraft. AGENTS.md/CLAUDE.md corrigés (PR #12).',
         },
         {
@@ -304,6 +311,12 @@ export const hubData: HubData = {
           meta: 'Intro Débourrement (motion) + refonte accueil v2 + DA papier & bronze + corrections post-revue + menu mobile · 6 commits',
           commits: ['2dd1dd2', '97c5ac9', '0587d6f', 'd2703ad', 'ed26e00', 'a2c5131'],
           liveUrl: 'https://ctarbro.ca',
+          sketches: [
+            { id: 'A', name: 'La Signature', desc: 'Accueil signature — Le soin des arbres, élevé au rang de métier', status: 'explored' },
+            { id: 'B', name: 'Racines', desc: 'Accueil racines — Vos arbres en bonnes mains, depuis 30 ans', status: 'explored' },
+            { id: 'C', name: 'Canopée', desc: 'Accueil canopée — direction éditoriale végétale', status: 'explored' },
+            { id: 'D', name: 'Finale papier & bronze', desc: 'Accueil final — DA papier & bronze, Fraunces/Archivo, motion Débourrement', status: 'selected', featured: true },
+          ],
           notes: 'Nouvelle direction artistique « papier & bronze ». Le vert forêt est retiré (tell « compagnie d arbres générique »). Palette: paper #F4F0E6, ink #1A1714, bronze #A26E30. Nouvelles polices: Fraunces (display) + Archivo (UI). Intro d accueil « Débourrement »: signature motion de la marque. Header + footer migrés. design.md créé comme référence visuelle unique. Le reste du site migre ensuite.',
         },
         {
